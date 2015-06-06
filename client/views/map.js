@@ -12,7 +12,7 @@ Template.map.onRendered(function(){
 		console.log(state.state + '-male: ' + state.maleCount);
 		console.log(state.state + '-female: ' + state.femaleCount);
 		var stateName = 'US-' + state.state;
-		var malePercentage = state.maleCount / (state.femaleCount + state.maleCount);
+		var malePercentage = state.femaleCount / state.maleCount	 ;
 		console.log(malePercentage);
 
 		data.addRow([stateName, malePercentage]);
@@ -21,7 +21,6 @@ Template.map.onRendered(function(){
     var options = {
         region : 'US',
         resolution : 'provinces',
-        colorAxis: {colors: ['#00ff00','#ff0000']},
     };
       
      
