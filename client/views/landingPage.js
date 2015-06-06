@@ -3,6 +3,7 @@ Template.landingPage.events({
 		e.preventDefault();
 		var states = States.find().fetch();
 		var selectVal = $('.variable').val();
+		var selectYear = $('.year').val();
 		var maleVariable = 'employment_male' + selectVal;
 		var femaleVariable = 'employment_female' + selectVal;
 		var variables = [
@@ -14,6 +15,7 @@ Template.landingPage.events({
 			var request = {
 				'state': state.state,
 				'level': 'state',
+				'year': selectYear,
 				variables: variables
 			}
 
