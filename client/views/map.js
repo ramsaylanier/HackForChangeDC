@@ -9,10 +9,13 @@ Template.map.onRendered(function(){
 	data.addColumn('number', 'Male Percentage');
 
 	_.each(states, function(state){
+		console.log(state);
 		console.log(state.state + '-male: ' + state.maleCount);
 		console.log(state.state + '-female: ' + state.femaleCount);
 		var stateName = 'US-' + state.state;
-		var malePercentage = state.femaleCount / state.maleCount	 ;
+		var total =  parseInt(state.femaleCount) + parseInt(state.maleCount);
+		console.log(state.state + '-total: ' + total);
+		var malePercentage = state.maleCount / total * 100;
 		console.log(malePercentage);
 
 		data.addRow([stateName, malePercentage]);
