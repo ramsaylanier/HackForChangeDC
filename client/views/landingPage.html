@@ -1,3 +1,25 @@
 <template name="landingPage">
 	<h1>LandingPage</h1>
+	<button class="load-data-btn">Load Data</button>
+
+	<form class="submit">
+		<div class="form-control">
+			<label>State:</label>
+			<input type="text" class="state-name">
+		</div>
+
+		<div class="form-control">
+			<label>Level:</label>
+			<select class="level">
+				<option value="state">State</option>
+				<option value="city">City</option>
+			</select>
+		</div>
+
+		<div class="form-control">
+			<input type="submit"/>
+		</div>
+	</form>
+
+	{{>results}}
 </template>

@@ -8,3 +8,6 @@ meteor-platform
 iron:router
 http
 bootstrap
+autopublish
+insecure
+rafaelhdr:google-charts
