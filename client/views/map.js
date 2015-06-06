@@ -1,26 +1,32 @@
 Template.map.onRendered(function(){
-	drawRegionsMap();
-	function drawRegionsMap() {
-	     var data = google.visualization.arrayToDataTable([
-	        ['State', 'Percentage'],
-	        ['US-IL', 100],
-	        ['US-IN', 75],
-	        ['US-IA', 50],
-	        ['US-RI', 10]
-	      ]);
+	var instance = this;
+	var states = instance.data.fetch();
 
-	    var options = {
-	        region : 'US',
-	        resolution : 'provinces',
-	        colorAxis: {colors: ['#00ff00','#ff0000']},
-	    };
-	      
-	      
+	var dataArray = [];
 
+	var data = new google.visualization.DataTable();
+	data.addColumn('string', 'State');
+	data.addColumn('number', 'Male Percentage');
 
-	    var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+	_.each(states, function(state){
+		console.log(state.state + '-male: ' + state.maleCount);
+		console.log(state.state + '-female: ' + state.femaleCount);
+		var stateName = 'US-' + state.state;
+		var malePercentage = state.maleCount / (state.femaleCount + state.maleCount);
+		console.log(malePercentage);
 
-	    chart.draw(data, options);
-  	}
+		data.addRow([stateName, malePercentage]);
+	});
+
+    var options = {
+        region : 'US',
+        resolution : 'provinces',
+        colorAxis: {colors: ['#00ff00','#ff0000']},
+    };
+      
+     
+    var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+    chart.draw(data, options);
 });
 

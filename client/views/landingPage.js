@@ -54,3 +54,9 @@ Template.landingPage.events({
 		});
 	}
 })
+
+Template.landingPage.helpers({
+	'states': function(){
+		return States.find();
+	}
+})
