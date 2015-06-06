@@ -24,6 +24,24 @@ form{
 	border-radius: 2px;
 }
 
+.submit-btn{
+	background-color: $purple;
+	color: white;
+	border: 0;
+	transition: all 300ms ease-out;
+	border-radius: 2px;
+	font-size: 1.2rem;
+	padding: .5rem 1rem;
+
+	&:focus{
+		outline: none;
+	}
+
+	&.loading{
+		background-color: darken($purple, 20%);
+	}
+}
+
 .white{
 	color: white;
 }

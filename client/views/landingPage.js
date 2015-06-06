@@ -1,6 +1,9 @@
 Template.landingPage.events({
 	'submit form': function(e){
 		e.preventDefault();
+		$('.submit-btn').val('loading');
+		$('.submit-btn').addClass('loading');
+
 		var states = States.find().fetch();
 		var selectVal = $('.variable').val();
 		var selectYear = $('.year').val();
@@ -38,6 +41,11 @@ Template.landingPage.events({
 								var rowToUpdate = chartData.getFilteredRows([{column: 0, value: stateName}]);
 								chartData.setCell(rowToUpdate[0], 1, malePercentage);
 								chart.draw(chartData, options);
+
+								if (index == 50){
+									$('.submit-btn').val('Submit');
+									$('.submit-btn').removeClass('loading');
+								}
 							}
 						});	
 					}
