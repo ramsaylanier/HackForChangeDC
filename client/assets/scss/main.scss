@@ -1,3 +1,28 @@
+$purple: #AC2EFF;
+$green: #1ff042;
+
 body{
 	background-color: white;
+}
+
+a{
+	color: $purple;
+	transition: all 300ms ease-out;
+
+	&:hover{
+		color: $green;
+	}
+}
+
+.white{
+	color: white;
+}
+
+.application-header{
+	background-color: black;
+}
+
+.logo{
+	height: 40px;
+	margin-right: 10px;
 }
