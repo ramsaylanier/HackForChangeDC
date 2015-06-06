@@ -2,7 +2,7 @@ chartData = new google.visualization.DataTable();
 options = {
 	region : 'US',
 	resolution : 'provinces',
-	
+
 };
 
 Template.map.onRendered(function(){
@@ -12,13 +12,12 @@ Template.map.onRendered(function(){
 	var dataArray = [];
 
 	chartData.addColumn('string', 'State');
-	chartData.addColumn('number', 'Male Percentage');
+	chartData.addColumn('number', 'Male Employment');
 
 	_.each(states, function(state){
 		var stateName = 'US-' + state.state;
 		var total =  parseInt(state.femaleCount) + parseInt(state.maleCount);
 		var malePercentage = Math.round( (state.maleCount / total * 100) * 100) / 100;
-
 		chartData.addRow([stateName, malePercentage]);
 	});
       
