@@ -1,37 +1,20 @@
 Template.landingPage.events({
 	'submit form': function(e){
 		e.preventDefault();
-
-		var state = $('.state-name').val();
-		var level = $('.level').val();
-		var request = {
-			'state': state,
-			'level': level,
-			variables: [
-				'employment_female_computer_engineering_and_science_occupations',
-				'employment_male_computer_engineering_and_science_occupations'
-			]
-		}
-
-		censusModule.APIRequest(request, function(result,error){
-			if (error){
-				alert(error)
-			} else {
-				console.log(result);
-			}
-		});
-	},
-	'click .load-data-btn': function(){
 		var states = States.find().fetch();
+		var selectVal = $('.variable').val();
+		var maleVariable = 'employment_male' + selectVal;
+		var femaleVariable = 'employment_female' + selectVal;
+		var variables = [
+			femaleVariable,
+			maleVariable
+		]
 
 		_.each(states, function(state, index){
 			var request = {
-			'state': state.state,
-			'level': 'state',
-				variables: [
-					'employment_female_computer_engineering_and_science_occupations',
-					'employment_male_computer_engineering_and_science_occupations'
-				]
+				'state': state.state,
+				'level': 'state',
+				variables: variables
 			}
 
 			Meteor.setTimeout(function(){
@@ -39,18 +22,25 @@ Template.landingPage.events({
 					if (error){
 						console.log(error);
 					} else {
-						console.log(state);
 						Meteor.call('updateState', state, result, function(error, res){
 							if (error){
 								alert(error)
 							} else {
-								console.log(states + ' YAY!');
+								var stateName = 'US-' + state.state;
+								var maleCount = result.data[0][maleVariable];
+								var femaleCount = result.data[0][femaleVariable];
+								var total =  parseInt(femaleCount) + parseInt(maleCount);
+								var malePercentage = Math.round( (maleCount / total * 100) * 100) / 100;
+
+
+								var rowToUpdate = chartData.getFilteredRows([{column: 0, value: stateName}]);
+								chartData.setCell(rowToUpdate[0], 1, malePercentage);
+								chart.draw(chartData, options);
 							}
 						});	
 					}
 				});
-			}, index * 300);	
-
+			}, index * 50);	
 		});
 	}
 })

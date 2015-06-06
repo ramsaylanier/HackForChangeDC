@@ -1,18 +1,14 @@
 <template name="landingPage">
 	<h1>LandingPage</h1>
-	<button class="load-data-btn">Load Data</button>
-
 	<form class="submit">
 		<div class="form-control">
-			<label>State:</label>
-			<input type="text" class="state-name">
-		</div>
-
-		<div class="form-control">
 			<label>Level:</label>
-			<select class="level">
-				<option value="state">State</option>
-				<option value="city">City</option>
+			<select class="variable">
+				<option value="_computer_engineering_and_science_occupations">Computer Engineering And Science</option>
+				<option value="_computer_and_mathematical_occupations">Mathematics</option>
+				<option value="_architecture_and_engineering_occupations">Architecture and Engineering</option>
+				<option value="_arts_design_entertainment_sports_and_media_occupations">Arts, Design, Entertainment & Sports</option>
+				<option value="_law_enforcement_workers_including_supervisors">Law Enforcement</option>
 			</select>
 		</div>
 
@@ -20,7 +16,9 @@
 			<input type="submit"/>
 		</div>
 	</form>
+
 	{{>map states}}
+
 	{{>results}}
 
 </template>
